@@ -57,3 +57,11 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# others
+.env.*
+!.env.example
+playstore-key.json
+builds/
+coverage/
+ios/tmp.xcconfig
