@@ -1,29 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
 import { Alert, Platform, ToastAndroid } from 'react-native';
-
-export function useToggle(initialState = false): [boolean, () => void] {
-    const [state, setState] = useState(initialState);
-
-    const toggle = useCallback(() => setState((pState) => !pState), []);
-
-    return [state, toggle];
-}
-
-export function useDebounce<T>(value: T, delay: number) {
-    const [debouncedValue, setDebouncedValue] = useState(value);
-
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            setDebouncedValue(value);
-        }, delay);
-
-        return () => {
-            clearTimeout(handler);
-        };
-    }, [value, delay]);
-
-    return debouncedValue;
-}
 
 export const toast = (msg: string | { message: string }, title: any = null) => {
     const message = typeof msg !== 'string' ? msg.message : msg;
@@ -108,4 +83,11 @@ export const constructDate = (date: string): Date => {
 
         return new Date();
     }
+};
+
+export const findIdInUrl = (url: string): number => {
+    const split = url.split('/');
+    const id = split[split.length - 2];
+
+    return Number(id);
 };
